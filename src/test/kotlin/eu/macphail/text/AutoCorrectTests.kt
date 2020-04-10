@@ -1,9 +1,5 @@
 package eu.macphail.text
 
-import eu.macphail.text.Dictionary
-import eu.macphail.text.Text
-import eu.macphail.text.Token
-import eu.macphail.text.autoCorrect
 import org.junit.Assert.assertEquals
 import org.junit.Test
 

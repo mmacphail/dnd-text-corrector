@@ -30,6 +30,15 @@ class MyController : Controller() {
         return text!!.buildFromTokens()
     }
 
+    fun cleanParagraphs(originText: String): String {
+        return eu.macphail.text.cleanParagraphs(originText)
+    }
+
+    fun correctAndClean(originText: String): String {
+        val correctedText = autoCorrect(originText)
+        return cleanParagraphs(correctedText)
+    }
+
 }
 
 class MasterView : View() {
@@ -67,7 +76,7 @@ J'étaiscomme ça."""
         }
         button("Autocorrect") {
             action {
-                val result = controller.autoCorrect(textToFormat.text)
+                val result = controller.correctAndClean(textToFormat.text)
                 resultText.text = result
             }
         }
