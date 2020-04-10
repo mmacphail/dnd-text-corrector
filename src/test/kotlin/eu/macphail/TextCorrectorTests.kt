@@ -14,14 +14,14 @@ class TextCorrectorTests {
     }
 
     @Test
-    fun canHandlePunctuation() {
+    fun canAutoCorrectTextWithPunctuation() {
         val phrase = "Ce traumatisantdocteur! Il était vraiment éprouvant!"
         val correction = "Ce traumatisant docteur! Il était vraiment éprouvant!"
         assertEquals(correction, textCorrector.autoCorrect(phrase))
     }
 
     @Test
-    fun canHandlePunctuationAndCase() {
+    fun canAutoCorrectTextWithPunctuationAndCase() {
         val phrase = "Ce TraumatisantDocteur! Il était vraiment éprouvant!"
         val correction = "Ce Traumatisant Docteur! Il était vraiment éprouvant!"
         assertEquals(correction, textCorrector.autoCorrect(phrase))
