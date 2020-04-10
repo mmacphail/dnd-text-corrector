@@ -1,4 +1,4 @@
-package eu.macphail
+package eu.macphail.text
 
 import java.io.File
 import java.nio.file.Files
@@ -6,15 +6,24 @@ import java.nio.file.Path
 import java.nio.file.Paths
 import kotlin.streams.asSequence
 
-class Dictionary() {
+class Dictionary {
 
     private val words: Set<String>
 
-    init {
+    constructor() {
         val path: String? = System.getenv("DICTIONARY_PATH")
         if (path == null) throwSetupException()
         val files = Files.list(Paths.get(path!!)).asSequence()
-        this.words = files
+        this.words = loadWords(files)
+    }
+
+    constructor(path: String) {
+        val files = Files.list(Paths.get(path)).asSequence()
+        this.words = loadWords(files)
+    }
+
+    private fun loadWords(files: Sequence<Path>): Set<String> {
+        return files
             .map(Path::toFile)
             .filter { it.isFile }
             .flatMap(this::readDictionaryFile)

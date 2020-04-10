@@ -1,4 +1,4 @@
-package eu.macphail
+package eu.macphail.text
 
 import org.junit.Assert.*
 import org.junit.Test

@@ -1,6 +1,8 @@
-package eu.macphail
+package eu.macphail.text
 
+import junit.framework.TestCase.assertTrue
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Test
 
 class ParserTests {
@@ -42,5 +44,28 @@ J'étais comme ça."""
             .buildFromTokens())
     }
 
+    @Test
+    fun canAppendToken() {
+        val updatedText = """Ce Traumatisant Docteur! Il était vraiment éprouvant!
+Il faut dire que je ne l'avais que peu connu.
+J'habitais à New-York.
+J'étais comme ça.John"""
+
+        assertEquals(updatedText, parseText(exampleText)
+            .appendToken("John")
+            .buildFromTokens())
+    }
+
+    @Test
+    fun isTokenWord() {
+        assertTrue(Token(0, "abc").isWord())
+        assertFalse(Token(0, " ").isWord())
+        assertFalse(Token(0, "!").isWord())
+        assertFalse(
+            Token(
+                0, """
+        """.trimIndent()
+            ).isWord())
+    }
 }
 
